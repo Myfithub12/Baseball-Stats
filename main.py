@@ -78,7 +78,7 @@ plt.show()
 sns.set_style('darkgrid')
 
 sns.barplot(x = "League", y = "R", data = df)
-;plt.show()
+:plt.show()
 
 NAME = "Name"
 HOMERUNS = "HR"
