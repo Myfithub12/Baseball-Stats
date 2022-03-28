@@ -77,7 +77,7 @@ plt.show()
 #Plot the number of Runs by League
 sns.set_style('darkgrid')
 
-sns.barplot(x = "League", y = "R", data = df):
+sns.barplot(x = "League", y = "R", data = df)
 plt.show()
 
 NAME = "Name"
