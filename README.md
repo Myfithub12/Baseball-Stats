@@ -41,7 +41,8 @@ Activating a Virtual Environment
 
 Installing Packages
 	For Mac or Linux
-	python3 -m pip install requests
+	python3 -m pip install -r requirements.txt
 
 	For Windows
-	py -m pip install requests
+	py -m pip install -r requirements.txt
+	
