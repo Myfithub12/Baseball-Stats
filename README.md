@@ -21,21 +21,14 @@ Installing VENV
 	py -m pip install --user virtualenv
 
 
-Creating a Virtual Environment
-	For Mac or Linux
-	python3 -m venv env
-
-	For Windows
-	py -m venv env
-
-
 
 Activating a Virtual Environment
 	For Mac or Linux
 	source env/bin/activate
 
 	For Windows
-	.\env\Scripts\activate
+	python -m venv virtual=env
+	virtual-env\Scripts\activate.bat
 
 
 
