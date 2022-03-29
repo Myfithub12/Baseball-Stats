@@ -7,22 +7,14 @@ All of the data has been taken fron the 'www.baseball-reference.com' website.
 In this program I have been using Visual Studio Code.
 
 To open a virtual environment follow these steps:
-Installing PIP
+
+Upgrade PIP
 	For Mac or Linux
 	python3 -m pip install --user --upgrade pip
 	pip 21.1.3 from $HOME/.local/lib/python3.9/site-packages (python 3.9)
 
 	For Windows
 	py -m pip install --upgrade pip
-
-
-
-Installing VENV
-	For Mac or Linux
-	python3 -m pip install --user virtualenv
-
-	For Windows
-	py -m pip install --user virtualenv
 
 
 Creating a Virtual Environment

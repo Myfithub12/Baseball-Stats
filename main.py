@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import csv
 import statistics
 import pandas as pd
@@ -14,7 +13,7 @@ df.describe()
 total_doubles = df['2B'].sum()
 print(total_doubles)
 
-df.rename(colums = {'Source.Name' : 'Team'}, inplace = True)
+df.rename(columns = {'Source.Name' : 'Team'}, inplace = True)
 
 # Print Unique Teams
 df["Team"].unique()
@@ -56,7 +55,7 @@ Teams_Leagues = {
 }
 
 # Group by League
-df['League'] = df['Team'].map(Trams_Leagues)
+df['League'] = df['Team'].map(Teams_Leagues)
 df.head()
 
 df.groupby('League').describe()
@@ -80,64 +79,65 @@ sns.set_style('darkgrid')
 sns.barplot(x = "League", y = "R", data = df)
 plt.show()
 
-NAME = "Name"
-HOMERUNS = "HR"
-RUNS = "R"
-RBI = "RBI"
-SB = "SB"
-AVG = "AVG"
+class Batter:
+    NAME = "Name"
+    HOMERUNS = "HR"
+    RUNS = "R"
+    RBI = "RBI"
+    SB = "SB"
+    AVG = "AVG"
 
-def __init__(self, name, homeruns, runs, rbi, sb, avg):
-    self.name = name
-    self.homeruns = homeruns
-    self.runs = runs
-    self.rbi = rbi
-    self.sb = sb
-    self.avg = avg
-    self.zscore = 0.0
+    def __init__(self, name, homeruns, runs, rbi, sb, avg):
+        self.name = name
+        self.homeruns = homeruns
+        self.runs = runs
+        self.rbi = rbi
+        self.sb = sb
+        self.avg = avg
+        self.zscore = 0.0
 
-def __str__(self):
-    return self.name + " | " +self.homeruns+ " | " +self.runs+ " | " +self.rbi+ " | " +self.sb+ " | " +self.avg
+    def __str__(self):
+        return self.name + " | " +self.homeruns+ " | " +self.runs+ " | " +self.rbi+ " | " +self.sb+ " | " +self.avg
 
-def parse_batters(filename):
-    with open(filename, 'r', encoding='utf-8-sig') as file:
-        reader = csv.DictReader(file)
-        total_homeruns = []
-        total_runs = []
-        total_rbi = []
-        total_sb = []
-        total_avg = []
-        batters = []
+    def parse_batters(filename):
+        with open(filename, 'r', encoding='utf-8-sig') as file:
+            reader = csv.DictReader(file)
+            total_homeruns = []
+            total_runs = []
+            total_rbi = []
+            total_sb = []
+            total_avg = []
+            batters = []
 
-for rows in reader:
-    new_batter = Batter(row[Name],
-        int(row[HOMERUNS]),
-        int(row[RUNS]),
-        int(row[RBI]),
-        int(row[SB]),
-        float(row[AVG]))
-    total_homeruns.append(int(row[HOMERUNS]))
-    total_runs.append(int(row[RUNS]))
-    total_rbi.append(int(row[RBI]))
-    total_sb.append(int(row[SB]))
-    total_avg.append(int(row[AVG]))
-    batters.append(new_batter)
-                    
-    mean_homeruns = statistics.mean(total_homeruns)
-    mean_runs = statistics.mean(total_runs)
-    mean_rbi = statistics.mean(total_rbi)
-    mean_sb = statistics.mean(total_sb)
-    mean_avg = statistics.mean(total_avg)
+    for rows in reader:
+        new_batter = Batter(row[Name],
+            int(row[HOMERUNS]),
+            int(row[RUNS]),
+            int(row[RBI]),
+            int(row[SB]),
+            float(row[AVG]))
+        total_homeruns.append(int(row[HOMERUNS]))
+        total_runs.append(int(row[RUNS]))
+        total_rbi.append(int(row[RBI]))
+        total_sb.append(int(row[SB]))
+        total_avg.append(int(row[AVG]))
+        batters.append(new_batter)
+                        
+        mean_homeruns = statistics.mean(total_homeruns)
+        mean_runs = statistics.mean(total_runs)
+        mean_rbi = statistics.mean(total_rbi)
+        mean_sb = statistics.mean(total_sb)
+        mean_avg = statistics.mean(total_avg)
 
-    pst.dev_homeruns = statistics.pstdev(total_homeruns)
-    pst.dev_runs = statistics.pstdev(total_runs)
-    pst.dev_rbi = statistics.pstdev(total_rbi)
-    pst.dev_sb = statistics.pstdev(total_sb)
-    pst.dev_avg = statistics.pstdev(total_avg)
+        pst.dev_homeruns = statistics.pstdev(total_homeruns)
+        pst.dev_runs = statistics.pstdev(total_runs)
+        pst.dev_rbi = statistics.pstdev(total_rbi)
+        pst.dev_sb = statistics.pstdev(total_sb)
+        pst.dev_avg = statistics.pstdev(total_avg)
 
-for batter in batters:
-    batter.zscore += (batter_homeruns - mean_homeruns)/pst_homeruns
-    batter.zscore += (batter_runs - mean_runs)/pst_runs
-    batter.zscore += (batter_rbi - mean_rbi)/pst_rbi
-    batter.zscore += (batter_sb - mean_sb)/pst_sb
-    batter.zscore += (batter_avg - mean_avg)/pst_avg
+    for batter in batters:
+        batter.zscore += (batter_homeruns - mean_homeruns)/pst_homeruns
+        batter.zscore += (batter_runs - mean_runs)/pst_runs
+        batter.zscore += (batter_rbi - mean_rbi)/pst_rbi
+        batter.zscore += (batter_sb - mean_sb)/pst_sb
+        batter.zscore += (batter_avg - mean_avg)/pst_avg
